@@ -51,7 +51,30 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1 title="Uses of Class lib.pwss.algorithm_switch.AlgorithmSwitchingInitializer" class="title">Uses of Class<br>lib.pwss.algorithm_switch.AlgorithmSwitchingInitializer</h1>
 </div>
-No usage of lib.pwss.algorithm_switch.AlgorithmSwitchingInitializer</main>
+
+<h2>Implement Mock Algorithms in the MainApp Class</h2>
+
+<pre><code>
+### Enable Algorithm Switching
+
+To enable algorithm switching, you need to call `initAlgorithmSwitchingFunction` in an implementing class. Here’s
+how you can do it:
+
+```java
+import lib.pwss.algorithm_switch.AlgorithmSwitchingInitializer;
+import lib.pwss.algorithm_switch.EncryptionAlgorithm;
+
+public class MainApp {
+    public static void main(String[] args) {
+        AlgorithmSwitchingInitializer initializer = new AlgorithmSwitchingInitializer();
+        initializer.initAlgorithmSwitchingFunction(); // This only needs to be done once : ) 
+
+           }
+}
+```
+</code></pre>
+
+</main>
 <footer role="contentinfo">
 <hr>
 <p class="legal-copy"><small>Copyright &#169; PWSS ORG 2025. All rights reserved.</small></p>
