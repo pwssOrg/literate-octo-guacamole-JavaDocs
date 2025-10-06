@@ -51,7 +51,36 @@ loadScripts(document, 'script');</script>
 <div class="header">
 <h1 title="Uses of Class lib.pwss.hash.file_hash_handler.FileHashHandler" class="title">Uses of Class<br>lib.pwss.hash.file_hash_handler.FileHashHandler</h1>
 </div>
-No usage of lib.pwss.hash.file_hash_handler.FileHashHandler</main>
+<pre><code>
+<h2>Here's a basic example to get you started with using the `algorithm-hash-extraction` library</h2>
+
+
+import lib.pwss.hash.FileHashHandler;
+
+public class Example {
+    public static void main(String[] args) throws Exception {
+        final File file = new File("path/to/your/file");
+
+        
+        final FileHashHandler fileHashHandler = new FileHashHandler();
+
+        // Generate SHA-256 hash
+        final String sha256Hash = fileHashHandler.calculateSha256Hash(file);
+        System.out.println(sha256Hash);
+
+        // Generate SHA3 (256-bit) hash
+        final String sha3Hash = fileHashHandler.calculateSha3Hash(file);
+        System.out.println(sha3Hash);
+
+        // Generate BLAKE_2B (512-bit) hash
+        final String blake2bHash = fileHashHandler.calculateBlake2bHash(file);
+        System.out.println(blake2bHash);
+
+       
+    }
+}
+</code></pre>
+</main>
 <footer role="contentinfo">
 <hr>
 <p class="legal-copy"><small>Copyright &#169; PWSS ORG 2025. All rights reserved.</small></p>
