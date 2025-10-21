@@ -1,0 +1,16 @@
+<h2>Enable Algorithm Switching</h2>
+
+<pre><code>
+
+import lib.pwss.algorithm_switch.AlgorithmSwitchingInitializer;
+import lib.pwss.algorithm_switch.EncryptionAlgorithm;
+
+public class MainApp {
+    public static void main(String[] args) {
+        AlgorithmSwitchingInitializer initializer = new AlgorithmSwitchingInitializer();
+        initializer.initAlgorithmSwitchingFunction(); // This only needs to be done once : ) 
+
+           }
+}
+
+</pre></code>
