@@ -1,0 +1,27 @@
+<pre><code>
+import lib.pwss.hash.FileHashHandler;
+
+public class Example {
+    public static void main(String[] args) throws Exception {
+        final File file = new File("path/to/your/file");
+
+        
+        private final FileHash bigFileHashHandler = new BigFileHashHandler(-1L);
+
+
+        // Generate SHA-256 hash
+        final String sha256Hash = bigFileHashHandler.calculateSha256Hash(file);
+        System.out.println(sha256Hash);
+
+        // Generate SHA3 (256-bit) hash
+        final String sha3Hash = bigFileHashHandler.calculateSha3Hash(file);
+        System.out.println(sha3Hash);
+
+        // Generate BLAKE_2B (512-bit) hash
+        final String blake2bHash = bigFileHashHandler.calculateBlake2bHash(file);
+        System.out.println(blake2bHash);
+       
+    }
+}
+
+</code></pre>

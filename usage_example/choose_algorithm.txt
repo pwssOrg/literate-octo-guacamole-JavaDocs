@@ -1,0 +1,93 @@
+<h2>Complete example including mock implementations for two algorithms</h2>
+<pre><code>
+import lib.pwss.algorithm_switch.AlgorithmSwitchingInitializer;
+import lib.pwss.algorithm_switch.ChooseAlgorithm;
+import lib.pwss.algorithm_switch.EncryptionAlgorithm;
+
+
+public class MainApp implements ChooseAlgorithm {
+
+    private void Test() {
+        // Initialize the algorithm switching functionality
+        AlgorithmSwitchingInitializer initializer = new AlgorithmSwitchingInitializer();
+
+        // Only needs to be ran one time. This method creates the config file next to your pom.xml
+        initializer.initAlgorithmSwitchingFunction();
+
+        // Only one instance of EncryptionAlgorithm allowed
+        EncryptionAlgorithm encryptionAlgorithm = new EncryptionAlgorithm();
+
+        // Invokes the algorithm specified in the config file.
+        chooseAlgorithmImplementation(encryptionAlgorithm);
+    }
+
+    @Override
+    public void implementAlgorithm1() {
+        performRSAEncryption();
+    }
+
+    @Override
+    public void implementAlgorithm2() {
+        performKyberEncryption();
+    }
+
+    @Override
+    public void implementAlgorithm3() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'implementAlgorithm3'");
+    }
+
+    private final void performRSAEncryption() {
+        // Mock implementation of RSA encryption
+        System.out.println("RSA Encryption is being performed...");
+    }
+
+    private final void performKyberEncryption() {
+        // Mock implementation of Kyber encryption
+        System.out.println("Kyber Encryption is being performed...");
+    }
+
+    public static void main(String[] args) {
+        MainApp main = new MainApp();
+        main.Test();
+    }
+}
+
+### Key Points
+
+1. **Add the dependency to your Maven project** by updating `pom.xml`.
+2. **Initialize algorithm switching** with `initAlgorithmSwitchingFunction()`.
+3. **Implement logic** to choose and use the selected algorithm.
+
+### Guide for Changing Algorithm Name in switch_algorithm.properties
+You can change the algorithm name by editing the `switch_algorithm.properties` file located in the folder of your project that has the pom file. This file maps numeric values
+to specific algorithms:
+
+
+#Sat Jul 19 06:11:03 CEST 2025
+1=RSA
+2=Kyber
+3=Blake_2B
+USE_FOR_PROD=1
+
+
+To change an algorithm, simply update the value associated with the corresponding key. For example, if you want to
+change algorithm 2 from "Kyber" to "NewAlgorithm":
+
+
+#Sat Jul 19 06:11:03 CEST 2025
+1=RSA
+2=NewAlgorithm
+3=Blake_2B
+USE_FOR_PROD=1
+
+To change the selected algorithm to "NewAlgorithm", update the value of "USE_FOR_PROD" to "2":
+
+
+#Sat Jul 19 06:11:03 CEST 2025
+1=RSA
+2=NewAlgorithm
+3=Blake_2B
+USE_FOR_PROD=2
+
+</code></pre>
