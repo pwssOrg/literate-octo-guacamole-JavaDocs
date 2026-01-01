@@ -1,1 +1,1 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html","k":"18"},{"l":"lib.pwss.algorithm_switch"},{"l":"lib.pwss.hash"},{"l":"lib.pwss.hash.compare.util"},{"l":"lib.pwss.hash.file_hash_handler"},{"l":"lib.pwss.hash.model"}];updateSearchResults();
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"lib.pwss.algorithm_switch"},{"l":"lib.pwss.hash"},{"l":"lib.pwss.hash.compare.util"},{"l":"lib.pwss.hash.file_hash_handler"},{"l":"lib.pwss.hash.model"}];updateSearchResults();
