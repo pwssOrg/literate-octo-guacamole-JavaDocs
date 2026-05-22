@@ -1,5 +1,5 @@
-# Version: 1.0
-# Date: October 21, 2025
+# Version: 1.1
+# Date: May 22, 2026
 
 # Description:
 # This script is designed to insert usage examples into the literate-octo-guacamole-JavaDocs project.
@@ -57,7 +57,8 @@ $sourceFiles = @(
     "..\usage_example\enable_algorithm_switch.txt",
     "..\usage_example\choose_algorithm.txt",
     "..\usage_example\file_hash_handler.txt",
-    "..\usage_example\big_file_hash_handler.txt"
+    "..\usage_example\parallel_file_hash.txt",
+    "..\usage_example\parallel_file_hash_handler.txt"
     
 )
 
@@ -65,7 +66,8 @@ $destinationFiles = @(
     "..\docs\lib\pwss\algorithm_switch\class-use\AlgorithmSwitchingInitializer.html",
     "..\docs\lib\pwss\algorithm_switch\class-use\ChooseAlgorithm.html",
     "..\docs\lib\pwss\hash\file_hash_handler\class-use\FileHashHandler.html",
-    "..\docs\lib\pwss\hash\file_hash_handler\class-use\BigFileHashHandler.html"
+    "..\docs\lib\pwss\hash\file_hash_handler\parallel\package-use.html",
+    "..\docs\lib\pwss\hash\file_hash_handler\parallel\class-use\ParallelFileHashHandler.html"
 )
 
 ReplaceStringInFiles -sourceFilePaths $sourceFiles -destinationFilePaths $destinationFiles
