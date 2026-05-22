@@ -1,0 +1,67 @@
+<pre><code>
+
+<h2>Calculate all three hashes for a file in parallel</h2>
+
+package org.pwss;
+
+import lib.pwss.hash.ParallelFileHash;
+import lib.pwss.hash.file_hash_handler.BigFileHashHandler;
+import lib.pwss.hash.file_hash_handler.parallel.ParallelFileHashHandler;
+import lib.pwss.hash.model.HashForFilesOutput;
+
+import java.io.File;
+
+public class Main {
+    public static void main(String[] args) {
+
+        File file = new File("C:\\Users\\my_user\\downloads\\folder_with_big_files\\a_big_file.mp4");
+
+        // -1L means: attempt hashing regardless of file size
+        ParallelFileHash parallelFileHash = new ParallelFileHashHandler(new BigFileHashHandler(-1L));
+
+        HashForFilesOutput computedHashes = parallelFileHash.GetAllHashesInParallel(file);
+
+        System.out.printf("Alg 1: %s\nAlg 2: %s\nAlg 3: %s",computedHashes.sha256(),computedHashes.sha3(),computedHashes.blake2());
+
+        // Optional: shutdown internal thread pool
+        parallelFileHash.shutdownThreadPool();
+
+    }
+}
+
+</code></pre>
+
+<pre><code>
+
+<h2>Safe cleanup usage</h2>
+
+package org.pwss;
+
+import lib.pwss.hash.ParallelFileHash;
+import lib.pwss.hash.file_hash_handler.BigFileHashHandler;
+import lib.pwss.hash.file_hash_handler.parallel.ParallelFileHashHandler;
+import lib.pwss.hash.model.HashForFilesOutput;
+
+import java.io.File;
+
+public class Main {
+    public static void main(String[] args) {
+
+        File file = new File("C:\\Users\\my_user\\downloads\\folder_with_big_files\\a_big_file.mp4");
+
+        ParallelFileHash parallelFileHash = new ParallelFileHashHandler(new BigFileHashHandler(-1L));
+
+        try {
+            HashForFilesOutput computedHashes = parallelFileHash.GetAllHashesInParallel(file);
+
+            System.out.println(computedHashes);
+
+        } finally {
+            // Optional: shutdown internal thread pool
+            parallelFileHash.shutdownThreadPool();
+        }
+
+    }
+}
+
+</code></pre>

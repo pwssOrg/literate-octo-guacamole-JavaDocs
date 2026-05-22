@@ -2,4 +2,5 @@ lib.pwss.algorithm_switch
 lib.pwss.hash
 lib.pwss.hash.compare.util
 lib.pwss.hash.file_hash_handler
+lib.pwss.hash.file_hash_handler.parallel
 lib.pwss.hash.model

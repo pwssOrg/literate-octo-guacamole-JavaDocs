@@ -1,0 +1,101 @@
+<pre><code>
+
+<h2>Demonstration of Parallel and Sequential File Hash Processing</h2>
+
+package org.pwss;
+
+import lib.pwss.hash.file_hash_handler.BigFileHashHandler;
+import lib.pwss.hash.file_hash_handler.parallel.ParallelFileHashHandler;
+import lib.pwss.hash.model.HashForFilesOutput;
+
+import java.io.File;
+import java.time.Duration;
+import java.time.Instant;
+
+public class Main {
+    public static void main(String[] args) {
+      
+        // Change path name
+        File file = new File("C:\\Users\\my_user\\downloads\\folder_with_big_files\\a_big_file.mp4");
+
+        BigFileHashHandler coreHashExtractorInstance = new BigFileHashHandler(-1);
+
+        ParallelFileHashHandler parallelFileHashHandler = new ParallelFileHashHandler(coreHashExtractorInstance);
+
+        Instant startParallel = Instant.now();
+        HashForFilesOutput parallelOutput = parallelFileHashHandler.GetAllHashesInParallel(file);
+        Instant endParallel = Instant.now();
+        Duration parallelExecutingTime = Duration.between(startParallel, endParallel);
+
+        System.out.println(parallelOutput.toString());
+
+        Instant startSequential = Instant.now();
+        HashForFilesOutput sequentialOutput = coreHashExtractorInstance.GetAllHashes(file);
+        Instant endSequential = Instant.now();
+        Duration sequentialExecutionTime = Duration.between(startSequential, endSequential);
+
+        System.out.println(sequentialOutput.toString());
+
+        System.out.printf("Parallel execution time: %d", parallelExecutingTime.toMillis());
+        System.out.printf(" Sequential execution time: %d", sequentialExecutionTime.toMillis());
+
+        parallelFileHashHandler.shutdownThreadPool();
+
+    }
+}
+</code></pre>
+
+<pre><code>
+
+<h2>Asynchronous SHA-3 hashing of a large file</h2>
+
+package org.pwss;
+
+import lib.pwss.hash.file_hash_handler.BigFileHashHandler;
+import lib.pwss.hash.file_hash_handler.parallel.ParallelFileHashHandler;
+
+
+import java.io.File;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+import java.util.stream.IntStream;
+
+public class Main {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+
+        File file = new File("C:\\Users\\my_user\\downloads\\folder_with_big_files\\a_big_file.mp4");
+
+        BigFileHashHandler coreHashExtractorInstance = new BigFileHashHandler(-1);
+
+        ParallelFileHashHandler parallelFileHashHandler = new ParallelFileHashHandler(coreHashExtractorInstance);
+
+        Future<String> sha3Future = parallelFileHashHandler.calculateSha3HashFuture(file);
+
+        boolean once = false;
+        List<Integer> myIntegerList;
+
+        while (!sha3Future.isDone()) {
+
+            if (!once) {
+                System.out.println("Getting SHA3 hash , please wait :) ");
+                myIntegerList = IntStream.range(1, 300)
+                        .boxed()
+                        .toList();
+
+                System.out.printf(
+                        "My Integerlist is now of size -> %d and it feels good to do other work while getting this darn future ",
+                        myIntegerList.size());
+                once = true;
+
+            }
+
+        }
+
+        System.out.println(sha3Future.get());
+
+        parallelFileHashHandler.shutdownThreadPool();
+
+    }
+}
+</code></pre>
