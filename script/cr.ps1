@@ -24,8 +24,8 @@ if (-not $directory) {
 }
 
 # Define search string and replacement string
-$searchString = "Copyright &#169;"
-$replacementString = "Copyright &#169; PWSS ORG"
+$searchString = "Copyright &#169; 2026. All rights reserved."
+$replacementString = "Copyright &#169; PWSS ORG 2026. All rights reserved.<br>SPDX-License-Identifier: MIT"
 
 # Get all files in the chosen directory and its subdirectories
 $files = Get-ChildItem -Path $directory -Recurse -File
